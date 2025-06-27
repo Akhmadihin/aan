@@ -1,0 +1,24 @@
+name: Build BeeWare APK
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Briefcase
+        run: pip install briefcase
+      - name: Build APK
+        run: |
+          briefcase create android
+          briefcase build android
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: android/*.apk
