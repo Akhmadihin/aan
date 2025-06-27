@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools", "briefcase"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kubiki-browser"
+version = "0.1.0"
+description = "Web-браузер на PyQt5 для сайта Kubiki"
+authors = [
+    { name = "Ваше Имя", email = "ваш@email.com" },
+]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = [
+    "PyQt5==5.15.11",
+    "PyQtWebEngine==5.15.7",
+]
+
+[tool.briefcase]
+project_url = "https://sites.google.com/view/kubiki/"
+bundle = "com.example.kubiki"
+
+[tool.briefcase.app.kubiki]
+formal_name = "Kubiki Browser"
+description = "Приложение для просмотра сайта Kubiki"
+sources = ["src/kubiki"]
+icon = "src/kubiki/resources/icon"
+
+[tool.briefcase.app.kubiki.linux]
+requires = [
+    "libgl1-mesa-glx",
+    "libxcb-xinerama0",
+]
+
+[tool.briefcase.app.kubiki.windows]
+requires = []
+
+[tool.briefcase.app.kubiki.mac
